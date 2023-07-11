@@ -1,0 +1,63 @@
+﻿@model BIRModel.BIRDane
+@{
+    ViewData["Title"] = "Zadanie 1";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="NIP" class="col-sm-3 col-form-label">NIP</label>
+                <div class="col-sm-7">
+                    <input asp-for="NIP" class="form-control" />
+                    <span asp-validation-for="NIP" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Regon" class="col-sm-3 col-form-label">Regon</label>
+                <div class="col-sm-7">
+                    <input asp-for="Regon" class="form-control" />
+                    <span asp-validation-for="Regon" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Nazwa" class="col-sm-3 col-form-label">Nazwa</label>
+                <div class="col-sm-7">
+                    <input asp-for="Nazwa" class="form-control" />
+                    <span asp-validation-for="Nazwa" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Miejscowosc" class="col-sm-3 col-form-label">Miejscowosc</label>
+                <div class="col-sm-7">
+                    <input asp-for="Miejscowosc" class="form-control" />
+                    <span asp-validation-for="Miejscowosc" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="KodPocztowy" class="col-sm-3 col-form-label">KodPocztowy</label>
+                <div class="col-sm-7">
+                    <input asp-for="KodPocztowy" class="form-control" />
+                    <span asp-validation-for="KodPocztowy" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Ulica" class="col-sm-3 col-form-label">Ulica</label>
+                <div class="col-sm-7">
+                    <input asp-for="Ulica" class="form-control" />
+                    <span asp-validation-for="Ulica" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Typ" class="col-sm-3 col-form-label">Typ</label>
+                <div class="col-sm-7">
+                    <input asp-for="Typ" class="form-control" />
+                    <span asp-validation-for="Typ" class="text-danger"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
