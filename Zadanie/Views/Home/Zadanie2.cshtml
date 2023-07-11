@@ -1,6 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Zadanie 2";
+﻿@using React.AspNet
+@{
+    ViewData["Title"] = "Zadanie 2b - Lista zadań";
 }
-<h1>@ViewData["Title"]</h1>
 
 <p></p>
+@section Scripts {
+    <script src="~/lib/react/umd/react.development.js"></script>
+    <script src="~/lib/react-dom/umd/react-dom.development.js"></script>
+
+    <script src="@Url.Content("~/js/zad2.jsx")" type="module"></script>
+}
+
+<div id="content"></div>

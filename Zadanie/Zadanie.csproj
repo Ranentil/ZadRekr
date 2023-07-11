@@ -8,17 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-server-legacy.browser.development.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-server-legacy.browser.production.min.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-server-rendering-stub.development.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-server-rendering-stub.production.min.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-server.browser.development.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-server.browser.production.min.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-test-utils.development.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom-test-utils.production.min.js" />
     <None Include="wwwroot\lib\react-dom\umd\react-dom.development.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom.production.min.js" />
-    <None Include="wwwroot\lib\react-dom\umd\react-dom.profiling.min.js" />
     <None Include="wwwroot\lib\react\umd\react.development.js" />
     <None Include="wwwroot\lib\react\umd\react.production.min.js" />
     <None Include="wwwroot\lib\react\umd\react.profiling.min.js" />

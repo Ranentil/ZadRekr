@@ -20,3 +20,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.form-style {
+    position: relative;
+}
+
+.btn-pobierz {
+    position: absolute;
+    top: 0;
+    right: -20px;
+}

@@ -27,27 +27,51 @@ namespace Zadanie.Controllers
             return View();
         }
 
-        public IActionResult Zadanie2()
-        {
-            return View();
-        }
-
-        public JsonResult GetGUSdata(string nip)
+        public async Task<JsonResult> GetGUSdata(string nip)
         {
             nip = Regex.Replace(nip, @"[^\d]", "");
 
-            if (nip.Length < 10)
+            if (nip.Length != 10)
                 return Json(new { result = false, text = "Nieprawidłowy format NIPu" });
-            if (_context.Entrepreneurs.Any(a => a.NIP == nip))
-                return Json(new { result = false, text = "Przedsiembiorca istnieje już w bazie." } );
 
             BIRModel bir = new BIRModel();
 
-            var result = bir.Search(nip);
+            var result = await bir.Search(nip);
 
             if (result == null)
                 return Json(new { result = false, text = "Brak wyniku wyszukiwania" });
+            if (_context.Entrepreneurs.Any(a => a.NIP == nip))
+                return Json(new { result = true, data = result, text = "Przedsiembiorca istnieje już w bazie." });
             return Json(new { result = true, data = result });
+        }
+
+        public async Task<JsonResult> SaveData(string d)
+        {
+            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<BIRModel.BIRDane>(d);
+            var entr = new Entrepreneur 
+            { 
+                Name = data.Nazwa,
+                NIP = data.NIP,
+                City = data.Miejscowosc,
+                Street = data.Ulica,
+                Code = data.KodPocztowy,
+                Country = ""
+            };
+            _context.Add(entr);
+            try
+            {
+               await _context.SaveChangesAsync();
+            } 
+            catch (Exception ex)
+            {
+                return Json(new { result = false, text = "Błąd zapisu do bazy danych" });
+            }
+            return Json(new { result = true, text = "Zapisano" });
+        }
+
+        public IActionResult Zadanie2()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

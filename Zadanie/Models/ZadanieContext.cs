@@ -38,5 +38,10 @@ namespace Zadanie.Models
         public required string Country { get; set; }
         [MaxLength(10)]
         public string NIP { get; set; }
+
+        public Entrepreneur()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 }

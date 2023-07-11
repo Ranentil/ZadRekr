@@ -9,7 +9,7 @@ namespace Zadanie.Models
     public class BIRModel
     {
         string endpoint = "https://wyszukiwarkaregon.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc";
-        string userkey = "abcde12345abcde12345";
+        string userkey = "dd82600d18b743c2ad61";
         BIRDane birDane;
 
         public async Task<BIRDane> Search(string nip)
@@ -28,14 +28,15 @@ namespace Zadanie.Models
             using (new OperationContextScope(client.InnerChannel))
             {
                 var requestMessage = new HttpRequestMessageProperty();
-                //requestMessage.Headers.Add("sid", session);
                 requestMessage.Headers["sid"] = session.ZalogujResult;
-
                 OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
 
                 var par = new ParametryWyszukiwania { Nip = nip };
-                var result = await client.DaneSzukajPodmiotyAsync(par);
+                var result = client.DaneSzukajPodmiotyAsync(par).GetAwaiter().GetResult();
                 var requestResult = result.DaneSzukajPodmiotyResult;
+                
+                if (string.IsNullOrEmpty(requestResult))
+                    return birDane;
 
                 XDocument doc = XDocument.Parse(requestResult);
                 birDane = DaneKlienta.Load(doc).dane;
@@ -45,8 +46,7 @@ namespace Zadanie.Models
                 requestResult2 = requestResult2.Replace("praw_", "").Replace("fiz_", "");
                 XDocument doc2 = XDocument.Parse(requestResult2);
                 DaneRozsz.Dane dane2 = DaneRozsz.Load(doc2).dane;
-
-                this.Uzupelnij(nip, dane2);
+                Uzupelnij(nip, dane2);
             }
             await client.WylogujAsync(session.ZalogujResult);
             await client.CloseAsync();
